@@ -1,21 +1,26 @@
-//
-//  ContentView.swift
-//  SwiftDataTest
-//
-//  Created by Cole Fortner on 3/4/24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    
+    @Environment(\.modelContext) private var context
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+
+            Text("Tap on this button to add data")
+            Button("Add an item"){
+                addItem()
+            }
         }
         .padding()
+    }
+    
+    func addItem(){
+        // Create the item
+        let item = DataItem(name: "Test Item")
+        
+        // Add the item to the data context
+        context.insert(item)
     }
 }
 
